@@ -426,6 +426,31 @@ class SettingsActivity : Activity() {
     }
 
     private fun renderIntegration() {
+        addRow(rightPane, getString(R.string.dashboard_settings_url), settings.get("dashboardUrl").ifBlank { getString(R.string.settings_value_not_set) }) {
+            showEditDialog(getString(R.string.dashboard_settings_url), settings.get("dashboardUrl"), secret = false,
+                inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_URI,
+                helper = getString(R.string.dashboard_settings_url_help)) { value ->
+                val valid = runCatching { java.net.URI(value).let { it.scheme == "https" && !it.host.isNullOrBlank() && it.userInfo == null && it.fragment == null } }.getOrDefault(false)
+                if (value.isNotBlank() && !valid) false
+                else { settings.set("dashboardUrl", value); renderCategory(selected); true }
+            }
+        }
+        addRow(rightPane, getString(R.string.dashboard_settings_token), if (settings.get("dashboardReadToken").isNotBlank()) getString(R.string.settings_value_set) else getString(R.string.settings_value_not_set)) {
+            showEditDialog(getString(R.string.dashboard_settings_token), "", secret = true,
+                inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD,
+                helper = getString(R.string.dashboard_settings_token_help),
+                onClear = { settings.setSecret("dashboardReadToken", ""); renderCategory(selected) }) { value ->
+                if (value.isBlank()) false else { settings.setSecret("dashboardReadToken", value); renderCategory(selected); true }
+            }
+        }
+        addRow(rightPane, getString(R.string.dashboard_settings_refresh_token), if (settings.get("dashboardRefreshToken").isNotBlank()) getString(R.string.settings_value_set) else getString(R.string.settings_value_not_set)) {
+            showEditDialog(getString(R.string.dashboard_settings_refresh_token), "", secret = true,
+                inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD,
+                helper = getString(R.string.dashboard_settings_refresh_token_help),
+                onClear = { settings.setSecret("dashboardRefreshToken", ""); renderCategory(selected) }) { value ->
+                if (value.isBlank()) false else { settings.setSecret("dashboardRefreshToken", value); renderCategory(selected); true }
+            }
+        }
         addRow(rightPane, getString(R.string.settings_row_ha_url), settings.get("haUrl").ifBlank { getString(R.string.settings_value_not_set) }) {
             showEditDialog(getString(R.string.settings_row_ha_url), settings.get("haUrl"), secret = false,
                 inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_URI,

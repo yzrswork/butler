@@ -1,4 +1,8 @@
 <resources>
+    <string name="dashboard_settings_url">Dashboard HTTPS URL</string>
+    <string name="dashboard_settings_url_help">Read-only Cloudflare Worker endpoint. Display refresh never regenerates data.</string>
+    <string name="dashboard_settings_token">Dashboard read token</string>
+    <string name="dashboard_settings_token_help">Enter only the read token (no Bearer prefix or quotes). Do not enter the write credential. Saved with Android Keystore.</string>
     <!-- Assistant status line (AssistantService.status / Status.kt) -->
     <string name="status_mic_stopped">Mic stopped</string>
     <string name="status_timeout">Connection or response timed out</string>
@@ -167,9 +171,9 @@
     <string name="settings_helper_longitude_range">-180 to 180</string>
     <string name="settings_row_weather_background">Change background with the weather</string>
     <string name="settings_row_pick_background">Choose background image</string>
-    <string name="settings_value_default_illustration">Default illustration</string>
+    <string name="settings_value_default_illustration">App default background</string>
     <string name="settings_row_reset_background">Reset to default</string>
-    <string name="settings_reset_background_message">This removes the background image and restores the default illustration. Are you sure?</string>
+    <string name="settings_reset_background_message">This removes the selected background image and restores the app default. Are you sure?</string>
     <string name="toast_background_reset">Restored the default background</string>
 
     <string name="settings_row_ha_url">Home Assistant URL</string>
@@ -320,4 +324,6 @@
     <string name="cards_back_description">Back</string>
     <string name="cards_read_aloud">Read aloud</string>
     <string name="prompt_read_aloud">Read the following text aloud exactly as written, in a natural voice, without adding, summarizing or commenting on anything:\n%1$s</string>
+    <string name="dashboard_settings_refresh_token">Dashboard 更新トークン</string>
+    <string name="dashboard_settings_refresh_token_help">起動時の更新に使う専用トークン。未設定なら現在の snapshot を表示します。</string>
 </resources>

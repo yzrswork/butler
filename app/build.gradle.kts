@@ -6,7 +6,17 @@ val requiredDeps = listOf(
     layout.projectDirectory.file("src/main/assets/julius/model/logicalTri-3k16-gid.bin").asFile,
 )
 val fetchDeps = tasks.register<Exec>("fetchDeps") {
-    commandLine(rootDir.resolve("scripts/fetch-deps.sh").absolutePath)
+    val isWindows = System.getProperty("os.name").lowercase().contains("windows")
+    if (isWindows) {
+        commandLine(
+            "powershell.exe",
+            "-NoProfile",
+            "-ExecutionPolicy", "Bypass",
+            "-File", rootDir.resolve("scripts/fetch-deps.ps1").absolutePath,
+        )
+    } else {
+        commandLine(rootDir.resolve("scripts/fetch-deps.sh").absolutePath)
+    }
     onlyIf { requiredDeps.any { !it.exists() } }
 }
 

@@ -260,6 +260,17 @@ class MainActivity : Activity() {
         }
         root.addView(settingsButton, FrameLayout.LayoutParams(dp(48), dp(48), Gravity.TOP or Gravity.END).apply { rightMargin = dp(34); topMargin = dp(20) })
 
+        val talkButton = filledButton("話す", 22f, Palette.BRASS) {
+            action(AssistantService.TALK)
+        }
+        root.addView(
+            talkButton,
+            FrameLayout.LayoutParams(dp(180), dp(64), Gravity.BOTTOM or Gravity.END).apply {
+                rightMargin = dp(34)
+                bottomMargin = dp(28)
+            }
+        )
+
         dots = (0 until 4).map { View(this).apply { background = roundedShape(dp(2).toFloat(), fill = Palette.CREAM_30) } }
         dotsRow = LinearLayout(this).apply { orientation = LinearLayout.HORIZONTAL; gravity = Gravity.CENTER_VERTICAL }
         dots.forEach { dotsRow.addView(it, LinearLayout.LayoutParams(dp(5), dp(5)).apply { marginStart = dp(4); marginEnd = dp(4) }) }

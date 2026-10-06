@@ -1,4 +1,8 @@
 <resources>
+    <string name="dashboard_settings_url">ダッシュボード HTTPS URL</string>
+    <string name="dashboard_settings_url_help">読取り専用の Worker URL。画面の再取得ではデータは再集計されません。</string>
+    <string name="dashboard_settings_token">ダッシュボード読取りトークン</string>
+    <string name="dashboard_settings_token_help">読取りトークン本体のみ入力（Bearer や引用符は不要）。書込み用は入力しないでください。Keystore に保存します。</string>
     <!-- Assistant status line (AssistantService.status / Status.kt) -->
     <string name="status_mic_stopped">マイク停止中</string>
     <string name="status_timeout">接続・応答がタイムアウトしました</string>
@@ -167,9 +171,9 @@
     <string name="settings_helper_longitude_range">-180〜180</string>
     <string name="settings_row_weather_background">天気に合わせて背景を変える</string>
     <string name="settings_row_pick_background">背景画像を選ぶ</string>
-    <string name="settings_value_default_illustration">標準のイラスト</string>
+    <string name="settings_value_default_illustration">アプリ標準の背景</string>
     <string name="settings_row_reset_background">標準に戻す</string>
-    <string name="settings_reset_background_message">背景画像を削除して標準のイラストに戻します。よろしいですか？</string>
+    <string name="settings_reset_background_message">選択した背景画像を削除し、アプリ標準の背景に戻します。よろしいですか？</string>
     <string name="toast_background_reset">標準の背景に戻しました</string>
 
     <string name="settings_row_ha_url">Home Assistant URL</string>
@@ -320,4 +324,6 @@
     <string name="cards_back_description">戻る</string>
     <string name="cards_read_aloud">読み上げる</string>
     <string name="prompt_read_aloud">次の文章を、何も付け加えず要約もせず、書かれているとおりに自然な声で読み上げてください:\n%1$s</string>
+    <string name="dashboard_settings_refresh_token">Dashboard 更新トークン</string>
+    <string name="dashboard_settings_refresh_token_help">起動時の更新に使う専用トークン。未設定なら現在の snapshot を表示します。</string>
 </resources>
